@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productsRouter = void 0;
+const express_1 = require("express");
+const productController_1 = require("../controllers/productController");
+const checkRoleMiddleware_1 = require("../middlewares/checkRoleMiddleware");
+exports.productsRouter = (0, express_1.Router)();
+exports.productsRouter.get("/", productController_1.getAllProducts);
+exports.productsRouter.get("/:id", productController_1.getOneProduct);
+exports.productsRouter.post('/', checkRoleMiddleware_1.checkRoleMiddleware, productController_1.postNewProduct);
